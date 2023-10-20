@@ -38,28 +38,83 @@
     
     // Array.prototype.filter()
     // 1. Filter the list of inventors for those who were born in the 1500's
+        // const fifteenCentury = inventors.filter(function(inventor) {
+        //   if(inventor.year >= 1500 && inventor.year < 1600) {
+        //     return true;
+        //   }
+        // }); 
+        const fifteen = inventors.filter((inventor) => (inventor.year >= 1500 && inventor.year < 1600));
+        // console.table(fifteen);
+        // console.log(fifteen);
 
     // Array.prototype.map()
     // 2. Give us an array of the inventors first and last names
+        const name = inventors.map((inventor) => (`${inventor.first} ${inventor.last}`));
+        // console.table(name); 
+        // console.log(name);
+
 
     // Array.prototype.sort()
     // 3. Sort the inventors by birthdate, oldest to youngest
+            // const arrange = inventors.sort(function (a, b) {
+            //    if(a.year > b.year) {
+            //     return 1;
+            //    }
+            //    else {
+            //     return -1;
+            //    }
+            // });
+            const arrange = inventors.sort((a,b) => (a.year > b.year) ? 1 : -1);
+            console.table(arrange);
 
     // Array.prototype.reduce()
     // 4. How many years did all the inventors live all together?
+    // var sumUp = 0;
+    // for (let i = 0; i < inventors.length; i++) {
+    //   sumUp += (inventors[i].passed - inventors[i].year);
+    // }
+    // console.log(sumUp);
+      let totalYears = inventors.reduce((total, inventor) => total += (inventor.passed - inventor.year), 0);
+      console.log(totalYears);
+
 
     // 5. Sort the inventors by years lived
+    const ordered2 = inventors.sort((a, b) => {
+      const firstGuy = a.passed - a.year;
+      const lastGuy = b.passed - b.year;
+      return (firstGuy > lastGuy) ? -1 : 1;
+    });
+    console.table(ordered2);
 
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
-
+    // const element = document.querySelector(".mw-category");
+    // const links = [...element.querySelectorAll("a")];
+    // // const links = Array.from(element.querySelectorAll("a"));
+    // const de = links.map(link => link.textContent)
+    //                 .filter(content => content.includes("de"));
+    // console.log(de);
 
     // 7. sort Exercise
     // Sort the people alphabetically by last name
-
+    const alpha = people.sort((person1, person2) => {
+      const [last1, first1] = person1.split(", ");
+      const [last2, first2] = person2.split(", ");
+      return (last1 > last2) ? 1 : -1;
+    })
+    console.table(alpha);
     // 8. Reduce Exercise
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
+    const countVehicles = data.reduce(function(obj, items) {
+        // console.table(items);
+        if(!obj[items]) {
+          obj[items] = 0;
+        }
+        obj[items]++;
+        return obj;
+    }, {});
+    console.table(countVehicles);
 
   </script>
 </body>

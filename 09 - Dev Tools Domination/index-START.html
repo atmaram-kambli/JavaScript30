@@ -19,28 +19,65 @@
     }
 
     // Regular
+    console.log("Hello devs!");
 
     // Interpolated
+    console.log("I'm  %s", '😂');
 
     // Styled
+    console.log("%c This is styled console.","font-size: 50px; background: red")
 
     // warning!
+    console.warn("OHH NOo!")
 
     // Error :|
-
+    console.error("Damn it!")
     // Info
-
+    console.info("You ar great!")
     // Testing
-
+    console.assert(1 === 1, "This is wrong!");  //only fires when something is wrong
+    console.assert(1 === 2, "This is wrong!");  
+    const p = document.querySelector("p");
+    console.assert(p.classList.contains("ohh"), "this is wrong.");
     // clearing
+    console.clear();
 
     // Viewing DOM Elements
-
+    console.log(p);
+    console.dir(p);
+    console.clear();
+    
     // Grouping together
+    dogs.forEach(dog => {
+      console.groupCollapsed(`${dog.name}`);
+      console.log(`Name: ${dog.name}`);
+      console.log(`Age: ${dog.age}`);
+      console.log(`Hi, My name is ${dog.name}, I'm ${dog.age} years old.`)
+      console.groupEnd(`${dog.name}`);
 
+    })
     // counting
+    console.count("Ak");
+    console.count("Ak");
+    console.count("Ak");
+    console.count("Sam");
+    console.count("Ak");
+    console.count("Sam");
+    console.count("Ak");
+    console.count("Ak");
+
+    console.clear()
 
     // timing
+    console.time("fetching data");
+    fetch('https://api.github.com/users/wesbos')
+      .then(data => data.json())
+      .then(data => {
+        console.timeEnd("fetching data");
+        console.log(data);
+      })
+    
+    console.time("fetching data");
 
   </script>
 </body>

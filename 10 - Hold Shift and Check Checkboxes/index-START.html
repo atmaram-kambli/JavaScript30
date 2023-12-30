@@ -97,6 +97,35 @@
   </div>
 
 <script>
+  const inputs = document.querySelectorAll(`.inbox input[type="checkbox"]`)
+  // console.log(inputs);
+
+  let lastCheck;
+  
+  function handleCheck(e) {
+    console.log(e);
+    let inBetween = false;
+    // console.log(this)
+    // check if they had shift key down 
+    // and also they are checking it, not unchecking
+    if(e.shiftKey && lastCheck.checked) {
+        inputs.forEach(input => {
+          if(input === this || input === lastCheck) {
+            inBetween = !inBetween;
+          }
+          if(inBetween) {
+            input.checked = true;
+          }
+        })
+    }
+    lastCheck = this;
+  }
+  
+  inputs.forEach(input => {
+    input.addEventListener('click', handleCheck);
+  })
+
+
 </script>
 </body>
 </html>
